@@ -3,12 +3,7 @@ package com.product.api.entity;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
-
-@Document(collection = "Product")
-@AllArgsConstructor
-@NoArgsConstructor
+@Document
 public class Product {
 
 	@Id
@@ -21,6 +16,24 @@ public class Product {
 	private int productRatings;
 	private double price;
 	private boolean isActive;
+	
+	public Product() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Product(String productName, String productBigImage, String productThumbnail, String productDescription,
+			String productShortDecription, int productRatings, double price, boolean isActive) {
+		super();
+		this.productName = productName;
+		this.productBigImage = productBigImage;
+		this.productThumbnail = productThumbnail;
+		this.productDescription = productDescription;
+		this.productShortDecription = productShortDecription;
+		this.productRatings = productRatings;
+		this.price = price;
+		this.isActive = isActive;
+	}
 
 	public String getProductId() {
 		return productId;
@@ -86,12 +99,15 @@ public class Product {
 		this.price = price;
 	}
 
-	public boolean isActive() {
+	public boolean getisActive() {
 		return isActive;
 	}
 
 	public void setActive(boolean isActive) {
 		this.isActive = isActive;
 	}
+
+
+	
 
 }
