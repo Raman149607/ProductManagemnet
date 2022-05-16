@@ -12,10 +12,10 @@ spring:
           uri: lb://PRODUCT-SERVICE
           predicates:
             - Path=/api/**
-#        - id: process-pension-service
-#          uri: lb://PENSION-SERVICE
-#          predicates:
-#            - Path=/api/v1/ProcessPension/**
+        - id: email-notification-service
+          uri: lb://EMAIL-NOTIFICATION-SERVICE
+          predicates:
+            - Path=/api/email/**
             
     
 eureka:

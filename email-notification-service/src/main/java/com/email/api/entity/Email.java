@@ -1,8 +1,6 @@
 package com.email.api.entity;
 
-import javax.persistence.*;
 
-@Entity
 public class Email {
 
 	private String recipient;

@@ -8,7 +8,6 @@ public class EmailNotificationServiceApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(EmailNotificationServiceApplication.class, args);
-		System.out.println("strated");
 	}
 
 }

@@ -1,0 +1,192 @@
+{
+	"info": {
+		"_postman_id": "ad822e2a-d720-4dc6-bdf5-8c6235a4b186",
+		"name": "ProductManagement",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Products",
+			"item": [
+				{
+					"name": "AddProducts",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"Iphone\",\r\n    \"productBigImage\": \"abc@123.com\",\r\n    \"productThumbnail\": \"xyz546.in\",\r\n    \"productDescription\": \"This is Iphone 13\",\r\n    \"productShortDecription\": \"Iphone\",\r\n    \"productRatings\": 9.2,\r\n    \"price\": 499.00,\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/Products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"Products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllProducts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/api/Products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"Products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductsById",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/api/Products/6280fcd7a79125775a62e5f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"Products",
+								"6280fcd7a79125775a62e5f4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetProductsByProductName",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/api/Products/name/Iphone",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"Products",
+								"name",
+								"Iphone"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateProducts",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productName\": \"Iphone\",\r\n    \"productBigImage\": \"bcd@123.com\",\r\n    \"productThumbnail\": \"xyz546.in\",\r\n    \"productDescription\": \"This is Iphone 13\",\r\n    \"productShortDecription\": \"Iphone\",\r\n    \"productRatings\": 9.2,\r\n    \"price\": 499.00,\r\n    \"isActive\": true\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/Products/628114e648d4b234bf3495e7",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"Products",
+								"628114e648d4b234bf3495e7"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteProductById",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8989/api/Products/6280fcd7a79125775a62e5f4",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"Products",
+								"6280fcd7a79125775a62e5f4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Email",
+			"item": [
+				{
+					"name": "SendMail",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n    \"recipient\":\"ramank1496@gmail.com\",\r\n    \"subject\":\"Prodcuts Details\",\r\n    \"msgBody\":\"successfull\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8989/api/email/sendMail",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8989",
+							"path": [
+								"api",
+								"email",
+								"sendMail"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
