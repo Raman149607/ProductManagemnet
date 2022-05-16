@@ -1,14 +1,23 @@
 package com.email.api.controller;
 
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.email.api.entity.Email;
+import com.email.api.services.EmailService;
 
 @RestController
 public class EmailController {
 	
-	@RequestMapping("/welcome")
-	public String welcome() {
-		return "hello";
+	@Autowired
+	private EmailService emailService;
+
+	@PostMapping("/sendMail")
+	public String sendMail(@RequestBody Email email) {
+		String status = emailService.sendEmail(email);
+		return status;
 	}
 
 }
