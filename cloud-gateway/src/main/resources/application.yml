@@ -15,7 +15,7 @@ spring:
         - id: email-notification-service
           uri: lb://EMAIL-NOTIFICATION-SERVICE
           predicates:
-            - Path=/api/email/**
+            - Path=/email/**
             
     
 eureka:

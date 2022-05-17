@@ -10,13 +10,13 @@ import com.email.api.entity.Email;
 import com.email.api.services.EmailService;
 
 @RestController
-@RequestMapping("/api/email")
+@RequestMapping(value = "/email")
 public class EmailController {
 
 	@Autowired
 	private EmailService emailService;
 
-	@PostMapping("/sendMail")
+	@PostMapping(value = "/sendMail")
 	public String sendMail(@RequestBody Email email) {
 		String status = emailService.sendEmail(email);
 		return status;

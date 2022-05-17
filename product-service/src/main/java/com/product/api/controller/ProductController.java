@@ -16,8 +16,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.product.api.Repository.ProductRepository;
+import com.product.api.common.Email;
 import com.product.api.entity.Product;
 import com.product.api.service.ProductService;
 
@@ -27,9 +30,12 @@ public class ProductController {
 
 	@Autowired
 	ProductService productService;
-	
+
 	@Autowired
 	ProductRepository productRepository;
+
+	@Autowired
+	RestTemplate restTemplate;
 
 	@GetMapping("/Products")
 	public ResponseEntity<List<Product>> getAllProducts() {
@@ -74,8 +80,18 @@ public class ProductController {
 	@PostMapping("/Products")
 	public ResponseEntity<Product> createProduct(@RequestBody Product product) {
 
+		Email email = new Email();
+		ObjectMapper objectMapper = new ObjectMapper();
 		try {
+			email.setRecipient("ramank1496@gmail.com");
+			email.setSubject("Products Details");
+			email.setMsgBody(objectMapper.writeValueAsString(product));
 			productService.saveProduct(product);
+			if (restTemplate == null)
+				restTemplate = new RestTemplate();
+			else {
+				restTemplate.postForEntity("http://localhost:8989/email/sendMail", email, String.class);
+			}
 			return new ResponseEntity<>(product, HttpStatus.CREATED);
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
@@ -84,32 +100,32 @@ public class ProductController {
 
 	@PutMapping("/Products/{id}")
 	public ResponseEntity<Product> updateProduct(@PathVariable("id") String id, @RequestBody Product product) {
-		 Optional<Product> productData = productRepository.findById(id);
-		  if (productData.isPresent()) {
-		    Product _Product = productData.get();
-		    _Product.setProductName(product.getProductName());
-		    _Product.setProductBigImage(product.getProductBigImage());
-		    _Product.setProductThumbnail(product.getProductThumbnail());
-		    _Product.setProductDescription(product.getProductDescription());
-		    _Product.setProductShortDecription(product.getProductShortDecription());
-		    _Product.setProductRatings(product.getProductRatings());
-		    _Product.setPrice(product.getPrice());
-		    _Product.setActive(product.getisActive());
-		   
-		    return new ResponseEntity<>(productRepository.save(_Product), HttpStatus.OK);
-		  } else {
-		    return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		  }
+		Optional<Product> productData = productRepository.findById(id);
+		if (productData.isPresent()) {
+			Product _Product = productData.get();
+			_Product.setProductName(product.getProductName());
+			_Product.setProductBigImage(product.getProductBigImage());
+			_Product.setProductThumbnail(product.getProductThumbnail());
+			_Product.setProductDescription(product.getProductDescription());
+			_Product.setProductShortDecription(product.getProductShortDecription());
+			_Product.setProductRatings(product.getProductRatings());
+			_Product.setPrice(product.getPrice());
+			_Product.setActive(product.getisActive());
+
+			return new ResponseEntity<>(productRepository.save(_Product), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
 	}
 
 	@DeleteMapping("/Products/{id}")
 	public ResponseEntity<HttpStatus> deleteProduct(@PathVariable("id") String id) {
 		try {
-		  productService.deleteById(id);
-		    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-		  } catch (Exception e) {
-		    return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		  }
+			productService.deleteById(id);
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		} catch (Exception e) {
+			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
 	}
 
 }
