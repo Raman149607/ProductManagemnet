@@ -1,12 +1,9 @@
 package com.product.api.entity;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document
+
 public class Product {
 
-	@Id
 	private String productId;
 	private String productName;
 	private String productBigImage;
@@ -19,22 +16,9 @@ public class Product {
 	
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Product(String productName, String productBigImage, String productThumbnail, String productDescription,
-			String productShortDecription, int productRatings, double price, boolean isActive) {
-		super();
-		this.productName = productName;
-		this.productBigImage = productBigImage;
-		this.productThumbnail = productThumbnail;
-		this.productDescription = productDescription;
-		this.productShortDecription = productShortDecription;
-		this.productRatings = productRatings;
-		this.price = price;
-		this.isActive = isActive;
-	}
-
+	
 	public String getProductId() {
 		return productId;
 	}

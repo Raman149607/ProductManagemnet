@@ -1,4 +1,4 @@
-package com.product.api.Repository;
+package com.product.api.repository;
 
 import java.util.List;
 

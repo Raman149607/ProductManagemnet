@@ -6,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.product.api.Repository.ProductRepository;
 import com.product.api.entity.Product;
+import com.product.api.repository.ProductRepository;
 
 @Service
 public class ProductService {
@@ -25,7 +25,7 @@ public class ProductService {
 		return productRepository.findAll();
 	}
 
-	public Optional<Product> ProductById(String id) {
+	public Optional<Product> productById(String id) {
 		return productRepository.findById(id);
 	}
 
